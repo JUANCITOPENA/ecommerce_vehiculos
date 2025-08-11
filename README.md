@@ -4,7 +4,7 @@
 
 Bienvenido a **GarageOnline**, un sofisticado y altamente interactivo sitio de comercio electrónico para la venta de vehículos. Este proyecto fue desarrollado como una demostración de habilidades en desarrollo frontend, utilizando tecnologías web modernas para crear una experiencia de usuario fluida, adaptativa y accesible.
 
-[➡️ **Ver el Sitio en Vivo**](https://TU-USUARIO.github.io/ecommerce-vehiculos/)  *(¡Reemplaza este enlace con tu URL de GitHub Pages!)*
+[➡️ **Ver el Sitio en Vivo**](https://juancitopena.github.io/ecommerce_vehiculos/)  *(¡Reemplaza este enlace con tu URL de GitHub Pages!)*
 
 ---
 
