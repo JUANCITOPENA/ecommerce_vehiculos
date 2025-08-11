@@ -1,0 +1,132 @@
+/* Estilos Base y Accesibilidad */
+body {
+    padding-top: 56px; /* Ajuste para la barra de navegación fija */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+/* Header y Barra de Navegación */
+.navbar-brand.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#cartCount {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    font-size: 0.75rem;
+    padding: .2em .5em;
+    transition: transform 0.2s ease-in-out;
+}
+
+#cartCount.pulse {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0% { transform: translate(50%, -50%) scale(1); }
+    50% { transform: translate(50%, -50%) scale(1.4); }
+    100% { transform: translate(50%, -50%) scale(1); }
+}
+
+/* Sección Hero */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* Altura 50% del viewport */
+    background-image: url('https://t4.ftcdn.net/jpg/02/82/00/75/360_F_282007508_wdCUP7hUMNK1Cuzj7XmOcFmzyzJ0Nnp9.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Superposición oscura para legibilidad */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* Tarjetas de Producto */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    height: 3em; /* Espacio para hasta dos líneas de texto */
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    height: 3.5em; /* Espacio para descripción corta */
+    overflow: hidden;
+}
+
+.card-footer-btn {
+    margin-top: auto; /* Empuja el botón al final de la tarjeta */
+}
+
+/* Estilos para el carrito en el modal */
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.cart-item-img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 5px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}

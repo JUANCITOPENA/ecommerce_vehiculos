@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GarageOnline - Venta de Vehículos</title>
+    <meta name="description" content="Sitio de ecommerce para la venta de los mejores vehículos nuevos y usados. Encuentra tu coche ideal en GarageOnline.">
+    <meta name="keywords" content="comprar coche, venta de vehículos, ecommerce, autos, GarageOnline">
+
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome 6.4.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header y Barra de Navegación -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Navegación principal">
+            <div class="container">
+                <a class="navbar-brand logo" href="#inicio">
+                    <i class="fas fa-car me-2"></i>GarageOnline
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#vehiculos">Vehículos</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="Buscar por marca, modelo..." aria-label="Barra de búsqueda de vehículos">
+                        <button class="btn btn-outline-light" id="cartButton" type="button" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="Ver carrito de compras">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge rounded-pill bg-primary" id="cartCount">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section con imagen de fondo -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Bienvenido a GarageOnline</h1>
+            <p>La mejor experiencia en la compra de tu próximo vehículo.</p>
+        </div>
+    </section>
+
+    <!-- Contenido Principal -->
+    <main class="container my-5">
+        
+        <!-- Sección de Inicio (Referencia para el link del nav) -->
+        <section id="inicio" class="text-center mb-5">
+            <h2 class="display-5">Tu concesionario de confianza</h2>
+            <p class="lead">Explora nuestro catálogo y encuentra el auto de tus sueños.</p>
+        </section>
+
+        <!-- Sección de Vehículos -->
+        <section id="vehiculos">
+            <h2 class="text-center mb-4">Nuestros Vehículos</h2>
+            
+            <!-- Spinner de Carga -->
+            <div id="loadingSpinner" class="d-flex justify-content-center my-5">
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Cargando vehículos...</span>
+                </div>
+            </div>
+
+            <!-- Contenedor para las tarjetas de vehículos -->
+            <div id="productsContainer" class="row">
+                <!-- Las tarjetas de vehículos se insertarán aquí dinámicamente -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <div class="container">
+            <p>&copy; 2024 GarageOnline. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MODALES DE BOOTSTRAP -->
+
+    <!-- Modal: Seleccionar Cantidad -->
+    <div class="modal fade" id="quantityModal" tabindex="-1" aria-labelledby="quantityModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantityModalLabel">Seleccionar Cantidad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Cuántas unidades deseas añadir al carrito?</p>
+                    <input type="number" id="quantityInput" class="form-control" value="1" min="1" step="1" aria-label="Cantidad a añadir">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmAddToCartBtn">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Carrito de Compras -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                        <!-- Los items del carrito se insertarán aquí -->
+                    </div>
+                    <hr>
+                    <div class="text-end">
+                        <h4>Total: <span id="cartTotal" class="text-primary">$0</span></h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Viendo</button>
+                    <button type="button" class="btn btn-success" id="checkoutBtn">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Formulario de Pago -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Proceso de Pago</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="paymentForm">
+                        <div class="mb-3">
+                            <label for="cardName" class="form-label">Nombre en la Tarjeta</label>
+                            <input type="text" class="form-control" id="cardName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Número de Tarjeta</glabel>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cardExpiry" class="form-label">Fecha de Vencimiento</label>
+                                <input type="text" class="form-control" id="cardExpiry" placeholder="MM/AA" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cardCVC" class="form-label">CVC</label>
+                                <input type="text" class="form-control" id="cardCVC" placeholder="123" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-target="#cartModal" data-bs-toggle="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="processPaymentBtn">Procesar Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3.2 JS Bundle (Popper incluido) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- jsPDF 2.5.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
